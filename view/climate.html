@@ -1,0 +1,38 @@
+{%  extends "index.html" %}
+{% block  contents %}
+{% for room in templatevalues.rooms %}
+	<div class="panel panel-info">
+	<div class="panel-heading"> 
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{room}}">
+		{{room}}
+		</a>
+	</div>	
+	<div class="panel-body">
+		<div id="{{room}}" class="accordion-body collapse">
+			<div class="accordion-inner">
+				{% for climatedevice in templatevalues.climatedevices %}
+                     {% if room == climatedevice.roomname%}
+                     	<div class="well well-sm">
+                     		<div class="row">
+							  <div class="col-xs-6 col-md-4">
+							  		{{climatedevice.pin}}  {{climatedevice.devicetype}}
+							  </div>
+							  <div class="col-xs-6 col-md-4">
+							  	<label name="{{climatedevice.pin}}">
+							  		Getting status
+							  	</label>
+							  </div>
+							  <div class="col-xs-6 col-md-4">
+							  	<input type="checkbox" name="{{climatedevice.pin}}" onClick="changeElem(this)">
+							  </div>
+							</div>
+                     	</div>
+                     {% endif %}
+                {% endfor %} 
+			</div>
+		</div>
+	</div>
+	</div>
+{% endfor %}
+<script type="text/javascript" src="static/js/check-status.js"></script>                
+{% endblock contents %}
