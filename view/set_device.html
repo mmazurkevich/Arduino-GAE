@@ -24,14 +24,14 @@
   		<div class="col-xs-3">
     		<select class="form-control" name="room">
     		{% for room in templatevalues.rooms %}
-  				<option>{{ room.roomname }}</option>
+  				<option>{{ room[0] }}</option>
   			{% endfor %}	
 				</select>	
   		</div>
   		<div class="col-xs-4">
     		<select class="form-control" name="devicetype">
     		{% for devicetype in templatevalues.devicetypes %}
-  				<option>{{ devicetype.devicetype }}</option>
+  				<option>{{ devicetype[0] }}</option>
   			{% endfor %}	
 				</select>	
   		</div>

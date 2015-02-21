@@ -1,13 +1,12 @@
 import jinja2
 import os
 import webapp2
+import MySQLdb
 import logging   # console loglib
 import json
 
 from google.appengine.api import urlfetch  # request  lib
-from model.room import Room
-from model.type import Type 
-from model.device import Device 
+
 
 
 jinja_environment = jinja2.Environment(
@@ -33,21 +32,27 @@ class Main_Settings(webapp2.RequestHandler):
             Main_Settings.typecheck = False
 
     def post(self):
+        db = MySQLdb.connect(host='127.0.0.1', port=3306, db='home', user='root', passwd='')
+        cursor = db.cursor()
         if (self.request.get('roomname') == ''):
-            typedevice = Type(devicetype = self.request.get('devicetype'))
-            typedevice.put()
+            cursor.execute('INSERT INTO Type (devicetype) VALUES (%s)', (self.request.get('devicetype')))
             Main_Settings.typecheck = True
         else:
-            room = Room(roomname = self.request.get('roomname'))
-            room.put()
+            cursor.execute('INSERT INTO Room (roomname) VALUES (%s)', (self.request.get('roomname')))
             Main_Settings.roomcheck = True
+        db.commit()
+        db.close()
         return webapp2.redirect('/settings')
 
 class Device_Settings(webapp2.RequestHandler):
     check = False
     def get(self):
-        devicetype = Type.query()
-        room = Room.query()
+        db = MySQLdb.connect(host='127.0.0.1', port=3306, db='home', user='root', passwd='')
+        cursor = db.cursor()
+        cursor.execute('SELECT devicetype FROM Type')
+        devicetype = cursor.fetchall()
+        cursor.execute('SELECT roomname FROM Room')
+        room = cursor.fetchall()
         templatevalues = {
             'rooms' : room,
             'devicetypes' : devicetype,
@@ -56,15 +61,17 @@ class Device_Settings(webapp2.RequestHandler):
         }
         if (Device_Settings.check == True):
             Device_Settings.check = False 
+        db.close()
         template = jinja_environment.get_template('set_device.html')
         self.response.out.write(template.render({'templatevalues':templatevalues}))
     
     def post(self):
-        device = Device(pin = int(self.request.get('pin')),
-            devicetype = self.request.get('devicetype'),
-            roomname = self.request.get('room'))
-        device.put()
+        db = MySQLdb.connect(host='127.0.0.1', port=3306, db='home', user='root', passwd='')
+        cursor = db.cursor()
+        cursor.execute('INSERT INTO Device (pin,devicetype,roomname) VALUES (%s,%s,%s)',(self.request.get('pin'),self.request.get('devicetype'),self.request.get('room')))
+        db.commit()
         Device_Settings.check = True
+        db.close()
         return webapp2.redirect('/add-device')
 
     #def post(self):

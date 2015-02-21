@@ -11,19 +11,19 @@
 		<div id="{{room}}" class="accordion-body collapse">
 			<div class="accordion-inner">
 				{% for climatedevice in templatevalues.climatedevices %}
-                     {% if room == climatedevice.roomname%}
+                     {% if room == climatedevice[2]%}
                      	<div class="well well-sm">
                      		<div class="row">
 							  <div class="col-xs-6 col-md-4">
-							  		{{climatedevice.pin}}  {{climatedevice.devicetype}}
+							  		{{climatedevice[0]}}  {{climatedevice[1]}}
 							  </div>
 							  <div class="col-xs-6 col-md-4">
-							  	<label name="{{climatedevice.pin}}">
+							  	<label name="{{climatedevice[0]}}">
 							  		Getting status
 							  	</label>
 							  </div>
 							  <div class="col-xs-6 col-md-4">
-							  	<input type="checkbox" name="{{climatedevice.pin}}" onClick="changeElem(this)">
+							  	<input type="checkbox" name="{{climatedevice[0]}}" onClick="changeElem(this)">
 							  </div>
 							</div>
                      	</div>
