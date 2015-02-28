@@ -12,7 +12,7 @@ handlers:
 
 libraries:
 - name: MySQLdb
-  version: "latest"
+  version: latest
 - name: webapp2
   version: latest
 - name: jinja2

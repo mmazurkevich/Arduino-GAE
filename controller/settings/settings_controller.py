@@ -4,15 +4,34 @@ import webapp2
 import MySQLdb
 import logging   # console loglib
 import json
+#from  climate_control import climateControl
+
 
 from google.appengine.api import urlfetch  # request  lib
+from google.appengine.api import taskqueue
 
 
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'/home/infinity/google_appengine/home/view')),
     extensions=['jinja2.ext.autoescape'],
-    autoescape=True) 
+    autoescape=True)
+
+'''
+class Test(webapp2.RequestHandler):
+
+    def get(self):
+        climateControl.check=True
+        taskqueue.add(url='/tasks', method='POST')
+        template = jinja_environment.get_template('test.html')
+        self.response.out.write(template.render())
+
+    def post(self):
+        climateControl.check=False
+        q = taskqueue.Queue('default')
+        q.purge()
+        return webapp2.redirect('/settings')
+'''
 
 class Main_Settings(webapp2.RequestHandler):
 
@@ -74,15 +93,3 @@ class Device_Settings(webapp2.RequestHandler):
         db.close()
         return webapp2.redirect('/add-device')
 
-    #def post(self):
-	#	url = "https://api.github.com/"
-	#	res = urlfetch.fetch(url)
-	#	if res.status_code == 200:
-	#		mom = "ssdsd"
-	#		top = "44434"
-	#		lol = mom + top + '\n'
-	#		for i in range(5):
-	#			self.response.write(lol)
-	#		#logging.info(res.content)
-	#		j = json.loads(res.content)
-  	#		self.response.write(j['starred_url'])
