@@ -20,11 +20,26 @@ function roomLight(roomElem){
 }
 
 function autoLight(roomElem){
-	var name = roomElem.name;
 	if (roomElem.checked){
-		$.get( "/light/auto-light" );
+		$.get( "/light/activate-auto", { type: "On", name: "light" } );
 	}else{
-		$.post( "/light/auto-light");
+		$.get( "/light/activate-auto", { type: "Off", name: "light" });
+	}
+}
+
+function autoClimate(roomElem){
+	if (roomElem.checked){
+		$.get( "/light/activate-auto", { type: "On", name: "climate" } );
+	}else{
+		$.get( "/light/activate-auto", { type: "Off", name: "climate" });
+	}
+}
+
+function secure(roomElem){
+	if (roomElem.checked){
+		$.get( "/light/activate-auto", { type: "On", name: "secure" } );
+	}else{
+		$.get( "/light/activate-auto", { type: "Off", name: "secure" });
 	}
 }
 

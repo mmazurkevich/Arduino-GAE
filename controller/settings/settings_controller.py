@@ -8,7 +8,6 @@ import json
 
 
 from google.appengine.api import urlfetch  # request  lib
-from google.appengine.api import taskqueue
 
 
 
@@ -16,22 +15,6 @@ jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'/home/infinity/google_appengine/home/view')),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
-
-'''
-class Test(webapp2.RequestHandler):
-
-    def get(self):
-        climateControl.check=True
-        taskqueue.add(url='/tasks', method='POST')
-        template = jinja_environment.get_template('test.html')
-        self.response.out.write(template.render())
-
-    def post(self):
-        climateControl.check=False
-        q = taskqueue.Queue('default')
-        q.purge()
-        return webapp2.redirect('/settings')
-'''
 
 class Main_Settings(webapp2.RequestHandler):
 

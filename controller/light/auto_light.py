@@ -11,15 +11,10 @@ class autoLight(webapp2.RequestHandler):
 
 	checkScript = True
 
-	def f():
+	def get(self):
 		while (autoLight.checkScript):
 			logging.info('1111')
 			time.sleep(5)
-
-	def post(self):
-		autoLight.checkScript = False
-
-	def get(self):
 		'''db = MySQLdb.connect(host='127.0.0.1', port=3306, db='home', user='root', passwd='')
 		cursor = db.cursor()
 		cursor.execute('SELECT pin,devicetype,roomname FROM Device WHERE devicetype = "light"')

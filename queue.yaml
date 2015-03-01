@@ -1,3 +1,7 @@
 queue:
 - name: default
-  rate: 4/s
+  rate: 5/s
+- name: light
+  rate: 5/s
+- name: climate
+  rate: 5/s
