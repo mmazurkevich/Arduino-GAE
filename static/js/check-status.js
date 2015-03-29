@@ -42,14 +42,3 @@ function secure(roomElem){
 		$.get( "/light/activate-auto", { type: "Off", name: "secure" });
 	}
 }
-
-/*function requestStatus(){
-	var a = document.getElementsByTagName('label');
-	for (var i=0; i<a.length; i++){
-		a[i].getAttribute("name");
-				//запрос к Arduino и менять статус если надо
-		//a[i].innerText=Date();
-	} 
-}
-
-window.setInterval(requestStatus, 1000);*/

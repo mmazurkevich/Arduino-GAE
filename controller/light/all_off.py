@@ -10,7 +10,9 @@ class allOff(webapp2.RequestHandler):
 		cursor = db.cursor()
 		cursor.execute('SELECT pin,devicetype,roomname FROM Device WHERE devicetype = "light"')
 		lightDevice = cursor.fetchall()
+		info = "Tern off light everywhere"
+		deviceHelper.addToBD(deviceHelper,99,info)		
 		for b in lightDevice:
-			if (deviceHelper.checkStatus(b[0]) == "On"):
-				deviceHelper.ternOff(b[0])
+			if (deviceHelper.checkStatus(deviceHelper,b[0]) == "On"):
+				deviceHelper.ternOff(deviceHelper,b[0])
 

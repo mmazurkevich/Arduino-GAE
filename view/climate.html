@@ -1,5 +1,6 @@
 {%  extends "index.html" %}
 {% block  contents %}
+<input type="checkbox"  onClick="autoClimate(this)">Auto Climate<br>
 {% for room in templatevalues.rooms %}
 	<div class="panel panel-info">
 	<div class="panel-heading"> 
@@ -34,5 +35,6 @@
 	</div>
 	</div>
 {% endfor %}
-<script type="text/javascript" src="static/js/check-status.js"></script>                
+<script type="text/javascript" src="static/js/check-status.js"></script> 
+<script type="text/javascript" src="static/js/request-status.js"></script>                   
 {% endblock contents %}

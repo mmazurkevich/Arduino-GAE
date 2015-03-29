@@ -1,5 +1,6 @@
 {%  extends "index.html" %}
 {% block  contents %}
+<input type="checkbox"  onClick="autoLight(this)">Auto Light<br>
 {% for room in templatevalues.rooms %}
 	<div class="panel panel-info">
 	<div class="panel-heading">
@@ -30,7 +31,7 @@
 							  	</label>
 							  </div>
 							  <div class="col-xs-6 col-md-4">
-							  	<input type="checkbox" name="{{lightdevice[0]}}" onClick="changeElem(this)">
+							  		<input type="checkbox" name="{{lightdevice[0]}}" onClick="changeElem(this)">
 							  </div>
 							</div>
                      	</div>
@@ -41,5 +42,7 @@
 	</div>
 	</div>
 {% endfor %}
-<script type="text/javascript" src="static/js/check-status.js"></script>               
+<link href="static/css/checkbx.css" rel="stylesheet">
+<script type="text/javascript" src="static/js/check-status.js"></script>
+<script type="text/javascript" src="static/js/request-status.js"></script>                  
 {% endblock contents %}

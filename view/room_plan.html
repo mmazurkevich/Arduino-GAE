@@ -1,7 +1,33 @@
 {%  extends "index.html" %}
 {% block  contents %}
-<input type="checkbox"  onClick="autoLight(this)">Auto Light<br>
-<input type="checkbox"  onClick="autoClimate(this)">Auto Climate<br>
-<input type="checkbox"  onClick="secure(this)">Secure Checkbox<br>
-<script type="text/javascript" src="static/js/check-status.js"></script>
+	<div class="row">
+  		<div class="col-xs-12 col-sm-6 col-md-10">
+<iframe src ="http://212.162.177.75/" width="100%" height="300">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+
+  		<div style="height:300px;overflow-y:scroll;;">	
+  			<table class="table table-hover">
+  				<caption class="text-center">History</caption>
+			<tr>
+			    <th class="text-center">Date</th>
+			    <th class="text-center">Information</th>
+			    <th class="text-center">User</th>
+			</tr>
+			{% for device in templatevalues.history %}
+			<tr>
+				<td class="text-center">{{ device[2] }}</td>
+				<td class="text-center">{{ device[3] }}</td>
+				<td class="text-center">{{ device[4] }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+		</div>	
+  		</div>
+  		<div class="col-xs-6 col-md-2">
+  				{% block  weather %}
+				{% endblock %}
+  		</div>
+	</div>
+	
 {% endblock contents %}
