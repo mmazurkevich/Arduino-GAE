@@ -19,15 +19,15 @@ class Main(webapp2.RequestHandler):
     def get(self):
         db = MySQLdb.connect(host='127.0.0.1', port=3306, db='home', user='root', passwd='')
         cursor = db.cursor()
-        cursor.execute('SELECT * FROM History')
+        cursor.execute('SELECT * FROM History ORDER BY -time')
         history = cursor.fetchall()
         db.close()
     	templatevalues = {
             'history' : history,
             'time' : strftime("%X", gmtime()),
             'year' : strftime(" %d %b %Y ", gmtime()),
-            'temperature' : 40,#deviceHelper.checkHumTemp(deviceHelper,"temperature"),
-            'humidity' : 20,#deviceHelper.checkHumTemp(deviceHelper,"humidity"),
+            'temperature' : deviceHelper.checkHumTemp(deviceHelper,"temperature"),
+            'humidity' : deviceHelper.checkHumTemp(deviceHelper,"humidity"),
         }
         template = jinja_environment.get_template('weather.html')
         self.response.out.write(template.render({'templatevalues':templatevalues}))

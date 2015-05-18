@@ -1,6 +1,7 @@
 {%  extends "index.html" %}
 {% block  contents %}
-<input type="checkbox"  onClick="autoClimate(this)">Auto Climate<br>
+	<input type="text" id="temperature"> 
+	<input type="checkbox"  onClick="autoClimate(this)">Auto Climate
 {% for room in templatevalues.rooms %}
 	<div class="panel panel-info">
 	<div class="panel-heading"> 

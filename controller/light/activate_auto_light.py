@@ -19,7 +19,7 @@ class activateAutoLight(webapp2.RequestHandler):
 				info = "Tern on climate control"
 				deviceHelper.addToBD(deviceHelper,99,info)
 				climateControl.check = True
-				taskqueue.add(url='/climate/control',queue_name='climate', method='GET')
+				taskqueue.add(url='/climate/control',queue_name='climate', method='GET', params={'count': self.request.GET['count']})
 			if (self.request.GET['name'] == "secure"):
 				info = "Tern on security"
 				deviceHelper.addToBD(deviceHelper,99,info)

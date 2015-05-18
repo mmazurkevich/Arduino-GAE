@@ -29,7 +29,8 @@ function autoLight(roomElem){
 
 function autoClimate(roomElem){
 	if (roomElem.checked){
-		$.get( "/light/activate-auto", { type: "On", name: "climate" } );
+		var i = document.getElementById("temperature");
+		$.get( "/light/activate-auto", { type: "On", name: "climate", count: i.value });
 	}else{
 		$.get( "/light/activate-auto", { type: "Off", name: "climate" });
 	}

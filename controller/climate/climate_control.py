@@ -50,7 +50,7 @@ class climateControl(webapp2.RequestHandler):
 		cursor = db.cursor()
 		cursor.execute('SELECT pin,devicetype,roomname FROM Device WHERE devicetype = "temperature" OR devicetype = "heating" OR devicetype = "warm floor" OR devicetype = "air conditioner" ORDER BY devicetype')
 		climatedevice = cursor.fetchall()
-		climateControl.temperature = 26 # забирать значение с пользовательского интерфейса.
+		climateControl.temperature = int(self.request.GET['count']) # забирать значение с пользовательского интерфейса.
 		for onedevice in climatedevice:
 			if (onedevice[1] == "temperature"):
 				climateControl.status.append(int(onedevice[0]))

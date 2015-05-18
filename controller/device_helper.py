@@ -8,7 +8,7 @@ from google.appengine.api import urlfetch
 
 class deviceHelper(webapp2.RequestHandler): 
 	
-	ip = "192.168.1.98" #Брать IP откуда нибудь
+	ip = "192.168.0.2" #Брать IP откуда нибудь
 	
 	def get(self):
 		pin = self.request.GET['pin']

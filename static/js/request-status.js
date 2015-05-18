@@ -1,7 +1,7 @@
 
 function requestStatus(){
 	var a = document.getElementsByTagName('label');
-	var ip = "192.168.1.98";
+	var ip = "192.168.0.2";
 	[].forEach.call(a,function (curValue) {
 		$.get("http://"+ip+"/digital/"+curValue.getAttribute("name"),function(data){
 			var c = curValue.getAttribute("name")

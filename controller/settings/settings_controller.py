@@ -52,7 +52,7 @@ class Main_Settings(webapp2.RequestHandler):
         if (self.request.get('roomname') == '' and self.request.get('devicetype') ==''):
             cursor.execute('INSERT INTO Device (pin,devicetype,roomname) VALUES (%s,%s,%s)',(self.request.get('pin'),self.request.get('type'),self.request.get('room')))
             typ = "i"
-            if (self.request.get('type') == "move" or self.request.get('devicetype') == "reed" or self.request.get('devicetype') == "humidity" or self.request.get('devicetype') == "temperature"):
+            if (self.request.get('type') == "move" or self.request.get('type') == "reed" or self.request.get('type') == "humidity" or self.request.get('type') == "temperature"):
                 typ = "i"
             else:
                 typ = "o"
